@@ -41,7 +41,7 @@ function render(data, i) {
     data: data[i % data.length],
     width: vis.width,
     height: vis.height,
-    title: 'Vertical Bar Chart',
+    titleText: 'Vertical Bar Chart',
     xValue: d => d.value,
     yValue: d => d.label,
     xValueUnit: 'm',

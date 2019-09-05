@@ -1,10 +1,12 @@
+import { title } from '../components/title.js';
+
 export const verticalBarChart = ({
   g,
   data,
   width,
   height,
   // margin,
-  title,
+  titleText,
   xValue,
   yValue,
   xValueUnit,
@@ -86,19 +88,7 @@ export const verticalBarChart = ({
     .text(d => xValue(d) + xValueUnit);
 
   // Title Text
-  const titleText = g.selectAll('.titleText').data([null]);
-  titleText.exit().remove();
-  titleText
-    .enter()
-    .append('text')
-    .attr('class', 'titleText')
-    .merge(g.selectAll('.titleText'))
-    .attr('x', width / 2)
-    .attr('y', -10)
-    .attr('text-anchor', 'middle')
-    .attr('font-size', '20px')
-    .attr('fill', 'black')
-    .text(title);
+  title({ g, text: titleText, x: width / 2, y: -10 });
 };
 
 function tooltipTemplate(d, { xValue, yValue, xValueUnit }) {

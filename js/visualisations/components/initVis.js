@@ -23,5 +23,5 @@ export const initVis = (
     })
   );
 
-  return { g, width, height };
+  return { g, width, height, margin };
 };
