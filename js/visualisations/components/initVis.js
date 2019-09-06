@@ -1,5 +1,3 @@
-// margin = ;
-
 export const initVis = (
   selection,
   { maxWidth, maxHeight, margin = { top: 20, right: 20, bottom: 20, left: 20 } }
@@ -13,15 +11,14 @@ export const initVis = (
     .attr('width', maxWidth)
     .attr('height', maxHeight);
 
-  const g = svg
+  const topG = svg.append('g');
+
+  const g = topG
     .append('g')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-  svg.call(
-    d3.zoom().on('zoom', () => {
-      g.attr('transform', d3.event.transform);
-    })
-  );
+  const zoomed = () => topG.attr('transform', d3.event.transform);
+  svg.call(d3.zoom().on('zoom', zoomed));
 
   return { g, width, height, margin };
 };

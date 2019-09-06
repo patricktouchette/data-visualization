@@ -1,30 +1,31 @@
 import { initVis } from '../components/initVis.js';
 import { Tooltip } from '../components/Tooltip.js';
-import { verticalBarChart } from './verticalBarChart.js';
+import { donutChart } from './donutChart.js';
 import { allData } from './data.js';
 
 const tooltip = new Tooltip('body');
 
 // Initialize the g which will hold the vis
 const vis = initVis('body', {
-  maxWidth: 400,
+  maxWidth: 500,
   maxHeight: 400,
-  margin: { top: 50, right: 60, bottom: 20, left: 80 },
+  margin: { top: 100, right: 100, bottom: 50, left: 100 },
 });
 
 // Render the visualization
 function render(data, i) {
-  verticalBarChart({
+  donutChart({
     g: vis.g,
     data: data[i % data.length],
     width: vis.width,
     height: vis.height,
-    titleText: 'Vertical Bar Chart',
-    xValue: d => d.value,
-    yValue: d => d.label,
-    xValueUnit: 'm',
-    fillColor: d3.scaleOrdinal(d3.schemeAccent),
+    margin: vis.margin,
+    titleText: 'Donut Chart',
+    value: d => d.value,
+    label: d => d.label,
+    fillColor: d3.scaleOrdinal(d3.schemeCategory10),
     tooltip,
+    showLabels: true,
   });
 
   index += 1;
@@ -35,6 +36,6 @@ render(allData, index);
 setTimeout(() => render(allData, index), 3000);
 
 // Add Event to Button
-document.getElementById('barChart').addEventListener('click', () => {
+document.getElementById('donutChart').addEventListener('click', () => {
   render(allData, index);
 });
