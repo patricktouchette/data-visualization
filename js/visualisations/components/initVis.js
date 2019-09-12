@@ -4,7 +4,8 @@ export const initVis = (
     maxWidth,
     maxHeight,
     margin = { top: 20, right: 20, bottom: 20, left: 20 },
-    zoom = true,
+    zoomable = true,
+    resetButtonId = 'reset',
   }
 ) => {
   const width = maxWidth - margin.left - margin.right;
@@ -22,9 +23,17 @@ export const initVis = (
     .append('g')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-  if (zoom) {
+  if (zoomable) {
     const zoomed = () => topG.attr('transform', d3.event.transform);
+    const zoomF = d3.zoom().on('zoom', zoomed);
     svg.call(d3.zoom().on('zoom', zoomed));
+
+    document.getElementById(resetButtonId).addEventListener('click', () => {
+      svg
+        .transition()
+        .duration(400)
+        .call(zoomF.transform, d3.zoomIdentity);
+    });
   }
 
   return { g, width, height, margin };
