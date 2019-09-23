@@ -9,7 +9,7 @@ const vis = initVis('body', {
   maxWidth: 1200,
   maxHeight: 800,
   margin: { top: 80, right: 50, bottom: 50, left: 50 },
-  zoom: false,
+  zoomable: false,
 });
 
 // Render the visualization

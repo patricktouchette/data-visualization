@@ -38,7 +38,7 @@ d3.csv('./data.csv').then(loadedData => {
     d.price = +d.price;
   });
 
-  const data = [loadedData.slice(0, 40), loadedData.slice(80, 120)];
+  const data = [loadedData.slice(0, 40), loadedData.slice(60, 130)];
 
   render(data, index);
   setTimeout(() => render(data, index), 3000);

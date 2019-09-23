@@ -10,7 +10,6 @@ export const brushedAreaChart = ({
   xValue,
   yValue,
   fillColor,
-  tooltip,
 }) => {
   // Title
   title({ g, text: titleText, x: width / 2, y: -margin.top / 2 });
