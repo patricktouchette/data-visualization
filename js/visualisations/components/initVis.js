@@ -27,6 +27,7 @@ export const initVis = (
     const zoomed = () => topG.attr('transform', d3.event.transform);
     const zoomF = d3.zoom().on('zoom', zoomed);
     svg.call(d3.zoom().on('zoom', zoomed));
+    svg.on('dblclick.zoom', null);
 
     document.getElementById(resetButtonId).addEventListener('click', () => {
       svg
