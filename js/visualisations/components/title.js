@@ -1,4 +1,4 @@
-export const title = ({ g, text, x, y }) => {
+export const title = ({ g, text, x, y, fontSize = '20px' }) => {
   const titleText = g.selectAll('.titleText').data([null]);
   titleText.exit().remove();
   titleText
@@ -9,7 +9,7 @@ export const title = ({ g, text, x, y }) => {
     .attr('x', x)
     .attr('y', y)
     .attr('text-anchor', 'middle')
-    .attr('font-size', '20px')
+    .attr('font-size', fontSize)
     .attr('fill', 'black')
     .text(text);
 };
