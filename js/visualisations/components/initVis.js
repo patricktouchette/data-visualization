@@ -17,7 +17,7 @@ export const initVis = (
     .attr('width', maxWidth)
     .attr('height', maxHeight);
 
-  const topG = svg.append('g');
+  const topG = svg.append('g').attr('class', 'topG');
 
   const g = topG
     .append('g')

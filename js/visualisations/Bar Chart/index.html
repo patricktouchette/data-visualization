@@ -9,14 +9,40 @@
       svg {
         border: 1px solid black;
       }
+
+      div > svg {
+        width: 100%;
+        height: 100%;
+        /* border-radius: 50%; */
+        transition: all 0.4s ease;
+      }
+
+      div > svg:hover {
+        background: rgba(30, 182, 17, 0.3);
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 2rem;
+      }
     </style>
   </head>
   <body>
-    <h1>Bar Chart</h1>
-    <button id="barChart">Next</button>
-    <button id="reset">Reset</button>
-
-    <br />
+    <main class="container">
+      <div id="barChart1">
+        <h1>Bar Chart</h1>
+        <button id="barChart">Next</button>
+        <button id="reset">Reset</button>
+        <br />
+      </div>
+      <div id="barChart2">
+        <h1>Bar Chart 2</h1>
+        <button id="barChart">Next</button>
+        <button id="reset">Reset</button>
+        <br />
+      </div>
+    </main>
 
     <script src="../d3.min.js"></script>
     <script src="./main.js" type="module"></script>

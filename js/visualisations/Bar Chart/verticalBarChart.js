@@ -3,9 +3,10 @@ import { title } from '../components/title.js';
 export const verticalBarChart = ({
   g,
   data,
+  id,
   width,
   height,
-  // margin,
+  margin,
   titleText,
   xValue,
   yValue,
@@ -13,8 +14,6 @@ export const verticalBarChart = ({
   fillColor,
   tooltip,
 }) => {
-  console.log(data);
-
   // Scales
   const xScale = d3
     .scaleLinear()
@@ -89,6 +88,26 @@ export const verticalBarChart = ({
 
   // Title Text
   title({ g, text: titleText, x: width / 2, y: -10 });
+
+  // Resize to fit
+  function resize() {
+    const container = document.querySelector(id);
+    const newWidth = container.getBoundingClientRect().width;
+    const newHeight = container.getBoundingClientRect().height;
+    const topG = d3.select(`${id} .topG`).data([null]);
+    console.log('topG', topG);
+    console.log('width', width);
+    console.log('newWidth', newWidth);
+    const scaleX = newWidth / (width + margin.right + margin.left);
+    const scaleY = newHeight / (height + margin.top + margin.bottom);
+    console.log('scaleX', scaleX);
+    console.log('scaleY', scaleY);
+    topG.attr('transform', `scale(${scaleX})`);
+  }
+
+  resize();
+
+  window.addEventListener('resize', resize);
 };
 
 function tooltipTemplate(d, { xValue, yValue, xValueUnit }) {
